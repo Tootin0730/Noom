@@ -1,3 +1,4 @@
-{
-    "presents" : ["@babel/preset-env"]
+{  
+    "ignore": ["src/public/*"],
+    "presets":["@babel/env"]
 }
