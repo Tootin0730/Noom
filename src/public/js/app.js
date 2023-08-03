@@ -9,33 +9,34 @@ function makeMessage(type, payload) {
 }
 
 function handleOpen() {
-    console.log("Connected to Server ✅");
+  console.log("Connected to Server ✅");
 }
-  
+
 socket.addEventListener("open", handleOpen);
-  
+
 socket.addEventListener("message", (message) => {
-    const li = document.createElement("li");
-    li.innerText = message.data;
-    messageList.append(li);
+  const li = document.createElement("li");
+  li.innerText = message.data;
+  messageList.append(li);
 });
-  
+
 socket.addEventListener("close", () => {
-    console.log("Disconnected from Server ❌");
+  console.log("Disconnected from Server ❌");
 });
-  
+
 function handleSubmit(event) {
-    event.preventDefault();
-    const input = messageForm.querySelector("input");
-    socket.send(makeMessage("new_message", input.value));
-    input.value = "";
+  event.preventDefault();
+  const input = messageForm.querySelector("input");
+  socket.send(makeMessage("new_message", input.value));
+  input.value = "";
 }
 
 function handleNickSubmit(event) {
-    event.preventDefault();
-    const input = nickForm.querySelector("input");
-    socket.send(makeMessage("nickname", input.value));
+  event.preventDefault();
+  const input = nickForm.querySelector("input");
+  socket.send(makeMessage("nickname", input.value));
+  input.value = "";
 }
-  
+
 messageForm.addEventListener("submit", handleSubmit);
 nickForm.addEventListener("submit", handleNickSubmit);
